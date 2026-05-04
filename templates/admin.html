@@ -1,0 +1,19 @@
+<h1>Admin Panel</h1>
+
+<p>Total Users: {{ total }}</p>
+
+<table border="1">
+    <tr>
+        {% for key in users[0].keys() %}
+        <th>{{ key }}</th>
+        {% endfor %}
+    </tr>
+
+    {% for user in users %}
+    <tr>
+        {% for value in user.values() %}
+        <td>{{ value }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>

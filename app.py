@@ -152,13 +152,19 @@ def recommend():
         "meals": {"breakfast": breakfast, "lunch": lunch, "dinner": dinner}
     })
 
+
+import sqlite3
+import pandas as pd
+from flask import render_template
+
+
 # ── Admin route ────────────────────────────────────────────────────────────
 @app.route("/admin")
 def admin():
     conn = sqlite3.connect(os.path.join(BASE, "users.db"))
     df_users = pd.read_sql_query("SELECT * FROM user_inputs ORDER BY id DESC", conn)
     conn.close()
-    return render_template("admin.html", users=df_users.to_dict(orient='records'), total=len(df_users))
+    return str(df_users)
 
 import os
 
@@ -167,3 +173,5 @@ print("Starting Flask server...")
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))  # IMPORTANT
     app.run(host="0.0.0.0", port=port)
+
+    
