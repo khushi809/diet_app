@@ -160,6 +160,10 @@ def admin():
     conn.close()
     return render_template("admin.html", users=df_users.to_dict(orient='records'), total=len(df_users))
 
+import os
+
 print("Starting Flask server...")
+
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=5000)
+    port = int(os.environ.get("PORT", 5000))  # IMPORTANT
+    app.run(host="0.0.0.0", port=port)
