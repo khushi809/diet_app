@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Admin Panel</title>
+    <title>Admin Dashboard</title>
     <style>
         body {
             font-family: Arial;
-            background-color: #f5f5f5;
+            background: #f4f6f8;
             padding: 20px;
         }
 
@@ -17,32 +17,39 @@
             width: 100%;
             border-collapse: collapse;
             background: white;
+            margin-top: 20px;
         }
 
         th, td {
-            padding: 12px;
+            padding: 10px;
             border: 1px solid #ddd;
             text-align: center;
         }
 
         th {
-            background-color: #4CAF50;
+            background: #4CAF50;
             color: white;
         }
 
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
         tr:hover {
-            background-color: #f1f1f1;
+            background: #f1f1f1;
         }
 
         .total {
-            margin-bottom: 15px;
+            text-align: center;
             font-size: 18px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
+
 <body>
 
-<h1>Admin Dashboard</h1>
+<h1>Admin Panel</h1>
 
 <div class="total">
     Total Users: {{ total }}
@@ -50,8 +57,6 @@
 
 <table>
     <tr>
-        <th>ID</th>
-        <th>Time</th>
         <th>Age</th>
         <th>Weight</th>
         <th>Height</th>
@@ -63,17 +68,16 @@
 
     {% for user in users %}
     <tr>
-        <td>{{ user.id }}</td>
-        <td>{{ user.timestamp }}</td>
-        <td>{{ user.age }}</td>
-        <td>{{ user.weight }}</td>
-        <td>{{ user.height }}</td>
-        <td>{{ user.goal }}</td>
-        <td>{{ user.diet }}</td>
-        <td>{{ user.calories }}</td>
-        <td>{{ user.protein }}</td>
+        <td>{{ user.get("age") }}</td>
+        <td>{{ user.get("weight") }}</td>
+        <td>{{ user.get("height") }}</td>
+        <td>{{ user.get("goal") }}</td>
+        <td>{{ user.get("diet") }}</td>
+        <td>{{ user.get("calories") }}</td>
+        <td>{{ user.get("protein") }}</td>
     </tr>
     {% endfor %}
+
 </table>
 
 </body>
