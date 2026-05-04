@@ -164,7 +164,11 @@ def admin():
     conn = sqlite3.connect(os.path.join(BASE, "users.db"))
     df_users = pd.read_sql_query("SELECT * FROM user_inputs ORDER BY id DESC", conn)
     conn.close()
-    return str(df_users)
+    return render_template(
+    "admin.html",
+    users=df_users.to_dict(orient='records'),
+    total=len(df_users)
+)
 
 import os
 
